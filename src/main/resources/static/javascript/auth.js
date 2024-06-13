@@ -13,15 +13,15 @@ function auth(data) {
             if (data.status === "correct-data") {
                 window.location.href = "/home";
             } else if (data.status === "incorrect-password") {
-                alert("Contraseña incorrecto");
+                alert("Contraseña incorrecta");
             } else if (data.status === "user-not-found") {
                 alert("Usuario incorrecto");
             } else {
-                console.log("Ha ocurrido un error");
+                alert("Ha ocurrido un error");
             }
         })
         .catch(() => {
-            console.log("Ha ocurrido un error con la petición");
+            alert("Ha ocurrido un error de conexión");
         });
 }
 
@@ -33,7 +33,7 @@ form.addEventListener('submit', function (event) {
     for (const [key, value] of dataForm.entries()) {
         formBody[key] = value;
     }
-    console.log(formBody);
+    
     auth(JSON.stringify(formBody));  
 });
 
