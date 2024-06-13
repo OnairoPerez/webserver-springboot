@@ -37,8 +37,3 @@ show.addEventListener("click", () => {
   });
 });
 
-let emailInputs = document.querySelectorAll("#formulario input[type='email']");
-emailInputs[0].addEventListener("input", () => {
-  let value = emailInputs[0].value;
-  emailInputs[1].value = value;
-});

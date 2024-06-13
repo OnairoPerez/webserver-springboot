@@ -4,25 +4,25 @@
  */
 
 function reg(data) {
-    const url = "http://localhost:8080/WebServer/registro";
+    const url = "http://localhost:8080/api/account/save";
     
     fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/json"
         },
         body: data
     })
         .then(res => res.json())
         .then(data => { 
-            if (data.registered) {
-                window.location.href = "/WebServer/login";
+            if (data.status === "done") {
+                window.location.href = "/login";
             } else {
-                console.log("Ha ocurrido un error con el regitro");
+                alert("Ha ocurrido un error con el regitro");
             }
         })
         .catch(() => {
-            console.log("Ha ocurrido un error de conexión");
+            alert("Ha ocurrido un error de conexión");
         });
 }
 function ckeckPassword() {
@@ -38,19 +38,19 @@ form.addEventListener('keydown', function(event) {
 form.addEventListener('submit', function (event) {
   event.preventDefault();
   let dataForm = new FormData(form);
-  let formBody = [];
+  let formBody = {"person": {}};
   for (const [key, value] of dataForm.entries()) {
-      const encodedKey = encodeURIComponent(key);
-      const encodedValue = encodeURIComponent(value);
-      formBody.push(`${encodedKey}=${encodedValue}`);
+      if (key === "email" || key === "password") {
+          formBody[key] = value;
+      } else {
+          formBody.person[key] = value;
+      }
   }
 
-  let encodedData = formBody.join('&');
-  
   if (ckeckPassword()) {
-      reg(encodedData);
+      reg(JSON.stringify(formBody));
   } else {
-      console.log("La confirmacación de la contraseña es incorrecta");
+      alert("La confirmación de la contraseña es incorrecta");
   }
 });
 

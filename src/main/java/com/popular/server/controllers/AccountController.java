@@ -19,4 +19,9 @@ public class AccountController {
     public String index() {
         return "login";
     }
+    
+    @GetMapping("register")
+    public String reg() {
+        return "register";
+    }
 }
