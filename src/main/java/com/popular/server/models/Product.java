@@ -40,6 +40,8 @@ public class Product {
     private int purchased;
     @Column(name = "image")
     private String img;
+    @Column(name = "descripcion")
+    private String description;
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_category")
@@ -73,6 +75,9 @@ public class Product {
     public Brands getBrand() {
         return this.brand;
     }
+    public String getDescription() {
+        return this.description;
+    }
     
     //Setters
     public void setCode(String code) {
@@ -98,6 +103,9 @@ public class Product {
     }
     public void setBrand(Brands brand) {
         this.brand = brand;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     //Otras funciones
