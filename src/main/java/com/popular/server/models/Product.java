@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.UUID;
 
 
@@ -42,8 +44,9 @@ public class Product {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_category")
     private Category category;
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@Column(name = "id_marca")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_marca")
+    private Brands brand;
     
     //Getters
     public String getCode() {
@@ -67,6 +70,9 @@ public class Product {
     public Category getCategory() {
         return this.category;
     } 
+    public Brands getBrand() {
+        return this.brand;
+    }
     
     //Setters
     public void setCode(String code) {
@@ -89,5 +95,16 @@ public class Product {
     }
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public void setBrand(Brands brand) {
+        this.brand = brand;
+    }
+    
+    //Otras funciones
+    public String localPrice() {
+        Locale colombia = new Locale("es", "CO");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(colombia);
+        numberFormat.setMaximumFractionDigits(0);
+        return numberFormat.format(this.price);
     }
 }
