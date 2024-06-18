@@ -27,7 +27,7 @@
             <input name="password" type="password" placeholder="Contraseña" required>
             <button type="submit">Ingresar</button>
             <a href="">Olvidé mi contraseña</a>
-            <a href="./registro">Registrarce</a>
+            <a href="./register">Registrarce</a>
         </form>
     </section>
     <script src="./javascript/auth.js"></script>

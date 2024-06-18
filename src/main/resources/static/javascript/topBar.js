@@ -12,6 +12,6 @@ const topElement = [imgCarrito, imgUser, imgLogo, buttonSearch]
 topElement.forEach(element => {
     element.addEventListener("click", () => {
         let url = element.dataset.link
-        window.location.href = `/WebServer/${url}`
+        window.location.href = `/${url}`
     })
 });
